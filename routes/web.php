@@ -12,14 +12,12 @@
 */
 
 //首页
-Route::get('/', function () {
-    return view('welcome');
-});
+
 
 //登录
 //php artisan make:auth自动生成的
 Auth::routes();
-Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/', 'HomeController@index')->name('home');
 
 //使用资源控制器
 
