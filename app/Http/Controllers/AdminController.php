@@ -27,7 +27,8 @@ class AdminController extends Controller
     }
     public function tag()
     {
-        return view('admin.tag');
+        $tags = Tag::paginate(10);
+        return view('admin.tag',compact('tags'));
     }
     //设为管理员
     public function setAdmin($id,$is_admin)

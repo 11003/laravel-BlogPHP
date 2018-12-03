@@ -18,7 +18,7 @@
                         <textarea name="desc" cols="30" rows="10">{{ old('desc') }}</textarea>
                     </div>
                     <button class="ui green button" type="submit">确认添加</button>
-                    <a class="ui red button" href="#">返回</a>
+                    <a class="ui red button" href="{{ url('admin/tag') }}">返回</a>
                 </div>
             </div>
         </form>

@@ -36,6 +36,6 @@ class User extends Authenticatable
     //用户使用状态
     public function is_disable()
     {
-        return $this->is_disable === 0;
+        return $this->is_disable === 1;
     }
 }

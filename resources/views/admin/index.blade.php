@@ -42,12 +42,12 @@
 
                                 @if($user->is_disable())
                                     <button class="ui button green"
-                                            onclick="setDisable('{{ url('admin/setDisable', ['id' => $user->id ,'is_disable' => 1]) }}')">
+                                            onclick="setDisable('{{ url('admin/setDisable', ['id' => $user->id ,'is_disable' => 0]) }}')">
                                         恢复此用户
                                     </button>
                                     @else
                                     <button class="ui button red"
-                                            onclick="setDisable('{{ url('admin/setDisable', ['id' => $user->id ,'is_disable' => 0]) }}')">
+                                            onclick="setDisable('{{ url('admin/setDisable', ['id' => $user->id ,'is_disable' => 1]) }}')">
                                         禁用此用户
                                     </button>
                                 @endif

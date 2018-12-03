@@ -78,6 +78,8 @@ Route::group(['middleware' => ['auth' , 'isadmin']] , function(){
     Route::post('tag/store','TagController@store');
     Route::get('tag/edit/{id}','TagController@edit');
     Route::any('tag/update/{id}','TagController@update');
+    Route::any('tag/destroy/{id}','TagController@destroy');
+    Route::any('tag/status/{id}/{status}','TagController@status');
 });
 
 

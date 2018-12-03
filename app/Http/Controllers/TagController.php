@@ -38,4 +38,25 @@ class TagController extends Controller
         $article->update($data);
         return back()->with('success', '成功更新标签信息');
     }
+    public function destroy($id)
+    {
+        Tag::find($id)->delete();
+        return ['status'=>1,'msg'=>'ok'];
+    }
+    //状态
+    public function status($id,$status)
+    {
+        $tag = Tag::find($id);
+        switch ($status){
+            case 1:
+                $tag->status = $status;
+                break;
+            default:
+                $tag->status = 0;
+                break;
+        }
+        $tag->save();
+
+        return ['status'=>$status];
+    }
 }

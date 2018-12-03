@@ -19,7 +19,7 @@
                     </div>
                     <input type="hidden" value="{{ $tag->id }}" name="id">
                     <button class="ui green button" type="submit">确认修改</button>
-                    <a class="ui red button" href="#">返回</a>
+                    <a class="ui red button" href="javascript:history.back(-1)">返回</a>
                 </div>
             </div>
         </form>

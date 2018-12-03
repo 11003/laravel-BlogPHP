@@ -70,6 +70,9 @@ class ArticleController extends Controller
 //        {
 //            $article_tag[]=$tags->id;
 //        }
+
+        $this->authorize('update',$article);
+
         $article_tag = $article->tag->pluck('id')->toArray();
         return view('article.edit',compact(
             'article',
@@ -97,7 +100,10 @@ class ArticleController extends Controller
     }
     public function destroy($id)
     {
-        Article::find($id)->delete();
+        $article = Article::find($id)->delete();
+
+        $this->authorize('delete',$article);
+
         return back()->with('success','删除文摘成功');
     }
 }

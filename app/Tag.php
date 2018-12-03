@@ -17,5 +17,9 @@ class Tag extends Model
             'article_id'
         );
     }
+    public function status()
+    {
+        return $this->status === 1;
+    }
 
 }

@@ -6,7 +6,7 @@
                 @include('common.adminmenu')
             </div>
             <div class="twelve wide stretched column">
-                <a href="../tag/add.html" class="ui green basic button">新增标签</a>
+                <a href="{{ url('tag/create') }}" class="ui green basic button">新增标签</a>
                 <table class="ui celled table">
                     <thead>
                     <tr>
@@ -17,79 +17,59 @@
                     </tr>
                     </thead>
                     <tbody>
+                    @foreach($tags as $k => $v)
                     <tr>
-                        <td>恐怖</td>
-                        <td>恐怖标签的描述</td>
-                        <td>2018-05-13 15:02:05</td>
+                        <td>{{ $v->tag_name }}</td>
+                        <td>{{ $v->desc }}</td>
+                        <td>{{ $v->created_at }}</td>
                         <td>
-                            <a href="">删除</a>
-                            <a href="../tag/edit.html">修改</a>
+                            <a href="javascript:delModel('{{ url('tag/destroy', $v->id) }}')">删除</a>
+                            @if($v->status())
+                                <a href="javascript:setStatus('{{ url('tag/status', ['id' => $v->id, 'status' => 0]) }}')">取消</a>
+                            @else
+                                <a href="javascript:setStatus('{{ url('tag/status', ['id' => $v->id, 'status' => 1]) }}')">发布</a>
+                            @endif
+                            <a href="{{ url('tag/edit', $v->id) }}">修改</a>
                         </td>
                     </tr>
-                    <tr>
-                        <td>悬疑</td>
-                        <td>悬疑标签的描述</td>
-                        <td>2018-05-13 15:02:05</td>
-                        <td>
-                            <a href="#">删除</a>
-                            <a href="../tag/edit.html">修改</a>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>科幻</td>
-                        <td>科幻标签的描述</td>
-                        <td>2018-05-13 15:02:05</td>
-                        <td>
-                            <a href="#">删除</a>
-                            <a href="../tag/edit.html">修改</a>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>言情</td>
-                        <td>言情标签的描述</td>
-                        <td>2018-05-13 15:02:05</td>
-                        <td>
-                            <a href="#">删除</a>
-                            <a href="../tag/edit.html">修改</a>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>搞笑</td>
-                        <td>搞笑标签的描述</td>
-                        <td>2018-05-13 15:02:05</td>
-                        <td>
-                            <a href="#">删除</a>
-                            <a href="../tag/edit.html">修改</a>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>都市</td>
-                        <td>都市标签的描述</td>
-                        <td>2018-05-13 15:02:05</td>
-                        <td>
-                            <a href="#">删除</a>
-                            <a href="../tag/edit.html">修改</a>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>盗墓</td>
-                        <td>盗墓标签的描述</td>
-                        <td>2018-05-13 15:02:05</td>
-                        <td>
-                            <a href="#">删除</a>
-                            <a href="../tag/edit.html">修改</a>
-                        </td>
-                    </tr>
+                    @endforeach
                     </tbody>
-                    <tfoot>
-                    <tr>
-                        <th colspan="4">
-
-                        </th>
-                    </tr>
-                    </tfoot>
                 </table>
             </div>
         </div>
     </div>
+@endsection
+@section('page_script')
+<script>
+    function delModel(url)
+    {
+        if(confirm('你确定要删除吗?')){
+            $.ajax({
+                url: url,
+                type: "DELETE",
+                success: function () {
+                    window.location.reload();
+                },
+                dataType: "json"
+            })
+        }
+    }
+    function setStatus(url)
+    {
+        $.ajax({
+            url: url,
+            type: "GET",
+            success: function (res) {
+                if(res.status == 1){
+                    alert('标签已发布');
+                    window.location.reload();
+                }else{
+                    alert('标签已取消');
+                    window.location.reload();
+                }
+            },
+            dataType: "json"
+        })
+    }
+</script>
 @endsection

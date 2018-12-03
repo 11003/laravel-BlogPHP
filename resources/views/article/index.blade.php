@@ -33,17 +33,22 @@
                                 <a class="ui right floated button" href="{{ url('article/show', ['aid'=> $article->id]) }}">
                                     阅读全文
                                 </a>
+                                @can('update',$article)
                                 <a class="ui right floated blue button" href="{{ url('article/edit', ['aid'=> $article->id]) }}">
                                     修改
                                 </a>
+                                @endcan
+                                @can('delete',$article)
                                 <a class="ui right floated red button" href="{{ url('article/del', ['aid'=> $article->id]) }}" >
                                     删除
                                 </a>
+                                @endcan
                                 <style>
                                     .ui.modal{
                                         top: 15%;
                                     }
                                 </style>
+                                @can('delete',$article)
                                 <div class="ui modal">
                                     <h2 class="header">
                                         删除文摘
@@ -57,6 +62,7 @@
                                         <a class="ui positive button yes" data-href="">是</a>
                                     </div>
                                 </div>
+                                @endcan
                             </div>
                         </div>
                     </div>
