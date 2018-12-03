@@ -31,7 +31,7 @@
                             <p>{{ $book->desc }}</p>
                         </div>
                     </div>
-                    <button class="ui green button" type="submit">确认发布</button>
+                    <button class="ui green button" type="submit">确认修改</button>
                     <a class="ui red button" href="javascript:history.back(-1)">返回</a>
                     <textarea name="content" id="content" style="display: none"></textarea>
                 </div>

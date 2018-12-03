@@ -29,33 +29,55 @@ Route::any('user/update/{id}','UserController@update');
 
 //书架
 Route::get('book','BookController@index');
-Route::post('book/store','BookController@store');
-Route::get('book/create','BookController@create');
-Route::any('book/del/{id}','BookController@destroy');
 Route::any('book/show/{id}','BookController@show');
-Route::get('book/edit/{id}','BookController@edit');
-Route::any('book/update/{id}','BookController@update');
-Route::any('book/restore/{id}','BookController@restore');
+
+
 
 //文摘
 Route::get('article','ArticleController@index');
 Route::any('article/store','ArticleController@store');
-Route::any('article/update/{id}','ArticleController@update');
 Route::get('article/show/{id}','ArticleController@show');
-Route::any('article/del/{id}','ArticleController@destroy');
-Route::get('article/edit/{id}','ArticleController@edit');
 Route::get('article/create/{id}','ArticleController@create');
 
-//标签
-Route::get('tag/create','TagController@create');
-Route::post('tag/store','TagController@store');
-Route::get('tag/edit/{id}','TagController@edit');
-Route::any('tag/update/{id}','TagController@update');
 
-//后台
-Route::get('admin/article','AdminController@article');
-Route::get('admin/book','AdminController@book');
-Route::get('admin','AdminController@index');
-Route::get('admin/tag','AdminController@tag');
+
+
+
+
+
+
+
+//设为管理员
+
+//Middleware
+Route::group(['middleware' => ['auth' , 'isadmin']] , function(){
+    //后台
+    Route::any('admin/setAdmin/{id}/{is_admin}','AdminController@setAdmin');
+    Route::any('admin/setDisable/{id}/{is_disable}','AdminController@setDisable');
+    Route::get('admin/article','AdminController@article');
+    Route::get('admin/book','AdminController@book');
+    Route::get('admin','AdminController@index');
+    Route::get('admin/tag','AdminController@tag');
+
+    //文摘
+    Route::any('article/update/{id}','ArticleController@update');
+    Route::any('article/del/{id}','ArticleController@destroy');
+    Route::get('article/edit/{id}','ArticleController@edit');
+
+    //书架
+    Route::post('book/store','BookController@store');
+    Route::get('book/create','BookController@create');
+    Route::any('book/del/{id}','BookController@destroy');
+    Route::get('book/edit/{id}','BookController@edit');
+    Route::any('book/update/{id}','BookController@update');
+    Route::any('book/restore/{id}','BookController@restore');
+
+
+    //标签
+    Route::get('tag/create','TagController@create');
+    Route::post('tag/store','TagController@store');
+    Route::get('tag/edit/{id}','TagController@edit');
+    Route::any('tag/update/{id}','TagController@update');
+});
 
 

@@ -24,18 +24,35 @@
                         <td>
                             @if($user->id == 1)
                                 <button class="ui button green"
-                                        onclick="update('#')">
+                                        onclick="setUpdate('#')">
                                     修改
                                 </button>
                                 @else
-                                <button class="ui button green"
-                                        onclick="setAdmin('#')">
-                                    设为管理员
-                                </button>
-                                <button class="ui button blue"
-                                        onclick="setDisable('#')">
-                                    禁用此用户
-                                </button>
+                                @if($user->is_admin())
+                                    <button class="ui button orange"
+                                            onclick="setAdmin('{{ url('admin/setAdmin' , ['id' => $user->id, 'is_admin' => 0]) }}')">
+                                        取消管理员
+                                    </button>
+                                    @else
+                                    <button class="ui button green"
+                                            onclick="setAdmin('{{ url('admin/setAdmin' , ['id' => $user->id, 'is_admin' => 1]) }}')">
+                                        设为管理员
+                                    </button>
+                                @endif
+
+                                @if($user->is_disable())
+                                    <button class="ui button green"
+                                            onclick="setDisable('{{ url('admin/setDisable', ['id' => $user->id ,'is_disable' => 1]) }}')">
+                                        恢复此用户
+                                    </button>
+                                    @else
+                                    <button class="ui button red"
+                                            onclick="setDisable('{{ url('admin/setDisable', ['id' => $user->id ,'is_disable' => 0]) }}')">
+                                        禁用此用户
+                                    </button>
+                                @endif
+
+
                             @endif
                         </td>
                     </tr>
@@ -52,4 +69,32 @@
             </div>
         </div>
     </div>
+@endsection
+@section('page_script')
+<script>
+    function setAdmin(url)
+    {
+        $.ajax({
+            url:url,
+            type: "GET",
+            dataType: "json",
+            success: function (res) {
+                alert(res.msg);
+                window.location.reload();
+            },
+        })
+    }
+    function setDisable(url)
+    {
+        $.ajax({
+            url:url,
+            type: "GET",
+            dataType: "json",
+            success: function (res) {
+                alert(res.msg);
+                window.location.reload();
+            },
+        })
+    }
+</script>
 @endsection

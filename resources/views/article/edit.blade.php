@@ -40,8 +40,8 @@
                     </div>
                     <textarea name="content" id="content" style="display: none"></textarea>
                     <input type="hidden" name="book_id" value="{{ $article->book_id }}">
-                    <button class="ui green button" type="submit">确认发布</button>
-                    <a class="ui red button" href="{{ url('article') }}">返回</a>
+                    <button class="ui green button" type="submit">确认修改</button>
+                    <a class="ui red button" href="javascript:history.back(-1)">返回</a>
                 </div>
             </div>
         </form>

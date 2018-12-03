@@ -165,6 +165,7 @@ return [
         Illuminate\Validation\ValidationServiceProvider::class,
         Illuminate\View\ViewServiceProvider::class,
         Chenhua\MarkdownEditor\MarkdownEditorServiceProvider::class,
+        HieuLe\Active\ActiveServiceProvider::class,
 
         /*
          * Package Service Providers...
@@ -228,7 +229,7 @@ return [
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
         'MarkdownEditor' => Chenhua\MarkdownEditor\Facades\MarkdownEditor::class,
-
+        'Active' => HieuLe\Active\Facades\Active::class,
     ],
 
 ];

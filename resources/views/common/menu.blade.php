@@ -1,9 +1,9 @@
 <!-- Following Menu -->
 <div class="ui large top {{ Request::path() == '/' ? 'fixed' : '' }} menu">
     <div class="ui container">
-        <a class="item {{ Request::path() == '/' ? 'active' : '' }}" href="/">主页</a>
-        <a class="item {{ Request::path() == 'book' ? 'active' : ''}}" href="{{ url('book') }}">书架</a>
-        <a class="item {{ Request::path() == 'article' ? 'active' : ''}}" href="{{ url('article') }}">文摘</a>
+        <a class="item {{ active_class(if_uri('/')) }}" href="/">主页</a>
+        <a class="item {{ active_class(if_uri('book')) }}" href="{{ url('book') }}">书架</a>
+        <a class="item {{ active_class(if_uri('article')) }}" href="{{ url('article') }}">文摘</a>
 
         <div class="right menu">
             <div class="item">
@@ -21,8 +21,10 @@
                     {{ Auth::user()->name }}
                     <i class="dropdown icon"></i>
                     <div class="menu">
-                        <a class="item active" href="{{ url('user/index') }}">个人中心</a>
-                        <a class="item" href="{{ url('admin') }}">后台管理</a>
+                        <a class="item {{ active_class(if_uri('user/index')) }}" href="{{ url('user/index') }}">个人中心</a>
+                        @if(Auth::user()->is_admin == 1)
+                            <a class="item {{ active_class(if_uri('admin')) }}" href="{{ url('admin') }}">后台管理</a>
+                        @endif
                         <div class="item" onclick="$('#logout_form').submit()">
                             退出登录
                         </div>

@@ -13,6 +13,12 @@ use Illuminate\Support\Facades\DB;
 class ArticleController extends Controller
 {
 
+    public function __construct()
+    {
+        //except 可以访问的页面
+        $this->middleware('auth')->except(['index','show']);
+    }
+
     //
     public function index()
     {

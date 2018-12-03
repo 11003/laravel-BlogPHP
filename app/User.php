@@ -14,9 +14,7 @@ class User extends Authenticatable
      *
      * @var array
      */
-    protected $fillable = [
-        'name', 'email', 'password','cover','desc',
-    ];
+    protected $guarded = []; /*可以注入所有字段*/
 
     /**
      * The attributes that should be hidden for arrays.
@@ -29,5 +27,15 @@ class User extends Authenticatable
     public function article()
     {
         return $this->hasMany(Article::class);
+    }
+    public function is_admin()
+    {
+        return $this->is_admin === 1;
+    }
+
+    //用户使用状态
+    public function is_disable()
+    {
+        return $this->is_disable === 0;
     }
 }
