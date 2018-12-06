@@ -52,15 +52,22 @@ class ArticleController extends Controller
             ->article()
             ->create($create_data);
         //利用返回值
+        // 触发事件
         $article->tag()->attach($data['tags']);
 
-        return redirect('/article');
+        return redirect()->back()->with('success', 'Profile created!');
     }
     public function show($id)
     {
         $article = Article::findOrFail($id);
 
-        return view('article.show',compact('article'));
+        $comments = $article
+            ->comment()
+            ->with(['user', 'reply_user'])
+            ->latest()
+            ->paginate(10);
+
+        return view('article.show',compact('article','comments'));
     }
     public function edit($id)
     {
@@ -96,7 +103,7 @@ class ArticleController extends Controller
         $article->update($data);
         //sync 同步关联关系
         $article->tag()->sync($request->tags);
-        return back()->with('success', '成功更新文摘信息');
+        return redirect()->back()->with('success', 'Profile updated!');
     }
     public function destroy($id)
     {

@@ -29,8 +29,8 @@ class AddCoverDescToUser extends Migration
     {
         Schema::table('users', function (Blueprint $table) {
             //
-            $table->string('cover')->nullable();
-            $table->string('desc')->nullable();
+            $table->removeColumn('cover')->nullable();
+            $table->removeColumn('desc')->nullable();
         });
     }
 }

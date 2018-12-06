@@ -7,14 +7,16 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 
 class User extends Authenticatable
 {
-    use Notifiable;
+    use Notifiable; //系统自动加的,接收消息的模型
 
     /**
      * The attributes that are mass assignable.
      *
      * @var array
      */
-    protected $guarded = []; /*可以注入所有字段*/
+    protected $fillable = [
+        'name', 'email', 'password', 'cover', 'desc', 'comment_count'
+    ];
 
     /**
      * The attributes that should be hidden for arrays.

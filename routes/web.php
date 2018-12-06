@@ -24,7 +24,10 @@ Route::get('/', 'HomeController@index')->name('home');
 //用户
 Route::get('user/index','UserController@index');
 Route::any('user/update/{id}','UserController@update');
-
+Route::get('/noti','UserController@noti');
+Route::any('noti/readall','UserController@readall');
+Route::any('noti/notreadall','UserController@notreadall');
+Route::any('noti/delread','UserController@delread');
 //书架
 Route::get('book','BookController@index');
 Route::any('book/show/{id}','BookController@show');
@@ -37,6 +40,8 @@ Route::any('article/store','ArticleController@store');
 Route::get('article/show/{id}','ArticleController@show');
 Route::get('article/create/{id}','ArticleController@create');
 
+//评论
+Route::any('comment/store','CommentController@store');
 
 
 

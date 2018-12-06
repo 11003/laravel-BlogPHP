@@ -19,16 +19,17 @@
                     <i class="circular student icon"></i> 热门文摘
                 </h2>
                 <div class="ui link four cards">
+                    @foreach($hot_articles as $k => $v)
                     <div class="card">
-                        <div class="image">
-                            <img src="/images/article_9.jpeg">
+                        <div class="image" onclick="window.open('{{ url('article/show', $v->id) }}')">
+                            <img src="{{ $v->cover }}">
                         </div>
                         <div class="content">
                             <div class="header">
-                                <a href="#">eligendi animi iure dolorem sunt</a>
+                                <a href="{{ url('article/show', $v->id) }}">{{ $v->title }}</a>
                             </div>
                             <div class="description">
-                                Consequatur dolores porro accusantium nulla qui ipsa ipsam.
+                               {{ $v->desc }}
                             </div>
                         </div>
                         <div class="extra content">
@@ -36,57 +37,7 @@
                             <span><i class="user icon"></i>0 人评论 </span>
                         </div>
                     </div>
-                    <div class="card">
-                        <div class="image">
-                            <img src="/images/article_3.jpeg">
-                        </div>
-                        <div class="content">
-                            <div class="header">
-                                <a href="#">voluptatum alias aperiam dolorum placeat</a>
-                            </div>
-                            <div class="description">
-                                Quaerat recusandae aliquam veritatis amet.
-                            </div>
-                        </div>
-                        <div class="extra content">
-                            <span class="right floated">491 次阅读</span>
-                            <span><i class="user icon"></i>0 人评论 </span>
-                        </div>
-                    </div>
-                    <div class="card">
-                        <div class="image">
-                            <img src="/images/article_4.jpeg">
-                        </div>
-                        <div class="content">
-                            <div class="header">
-                                <a href="#">est nostrum ut aliquid totam</a>
-                            </div>
-                            <div class="description">
-                                Autem ipsam sequi assumenda.
-                            </div>
-                        </div>
-                        <div class="extra content">
-                            <span class="right floated">491 次阅读</span>
-                            <span><i class="user icon"></i>0 人评论 </span>
-                        </div>
-                    </div>
-                    <div class="card">
-                        <div class="image">
-                            <img src="/images/article_9.jpeg">
-                        </div>
-                        <div class="content">
-                            <div class="header">
-                                <a href="#">quo voluptatem aut tempore ullam</a>
-                            </div>
-                            <div class="description">
-                                Recusandae rerum molestiae fugit molestias minima autem quia.
-                            </div>
-                        </div>
-                        <div class="extra content">
-                            <span class="right floated">487 次阅读</span>
-                            <span><i class="user icon"></i>0 人评论 </span>
-                        </div>
-                    </div>
+                    @endforeach
                 </div>
             </div>
         </div>
@@ -96,6 +47,7 @@
                     <i class="circular book icon"></i> 热门图书
                 </h2>
                 <div class="ui grid">
+                    @foreach($hot_books as $k => $v)
                     <div class="four wide column">
                         <div class="ui special cards">
                             <div class="card">
@@ -109,101 +61,21 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <img src="/images/book_5.png">
+                                    <img src="{{ $v->cover }}">
                                 </div>
                                 <div class="content">
-                                    <a class="header">aut nisi laudantium</a>
+                                    <a class="header">{{ $v->title }}</a>
                                     <div class="meta">
-                                        <span class="date">Aut expedita est tenetur ipsum molestias est.</span>
+                                        <span class="date"> {{ $v->desc }}</span>
                                     </div>
                                 </div>
                                 <div class="extra content">
-                                    <a><i class="users icon"></i> 8 篇文摘 </a>
+                                    <a><i class="users icon"></i> {{ $v->article_count }} 篇文摘 </a>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <div class="four wide column">
-                        <div class="ui special cards">
-                            <div class="card">
-                                <div class="blurring dimmable image">
-                                    <div class="ui inverted dimmer transition hidden">
-                                        <div class="content">
-                                            <div class="center">
-                                                <a href="#" class="ui primary button">
-                                                    查看详情
-                                                </a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <img src="/images/book_2.png">
-                                </div>
-                                <div class="content">
-                                    <a class="header">blanditiis natus quibusdam</a>
-                                    <div class="meta">
-                                        <span class="date">Dolores repellat voluptas atque accusantium.</span>
-                                    </div>
-                                </div>
-                                <div class="extra content">
-                                    <a><i class="users icon"></i> 6 篇文摘 </a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="four wide column">
-                        <div class="ui special cards">
-                            <div class="card">
-                                <div class="blurring dimmable image">
-                                    <div class="ui inverted dimmer">
-                                        <div class="content">
-                                            <div class="center">
-                                                <a href="#" class="ui primary button">
-                                                    查看详情
-                                                </a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <img src="/images/book_6.png">
-                                </div>
-                                <div class="content">
-                                    <a class="header">beatae dolor porro</a>
-                                    <div class="meta">
-                                        <span class="date">Sed aperiam provident iure illum optio qui rerum.</span>
-                                    </div>
-                                </div>
-                                <div class="extra content">
-                                    <a><i class="users icon"></i> 7 篇文摘 </a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="four wide column">
-                        <div class="ui special cards">
-                            <div class="card">
-                                <div class="blurring dimmable image">
-                                    <div class="ui inverted dimmer">
-                                        <div class="content">
-                                            <div class="center">
-                                                <a href="#" class="ui primary button">
-                                                    查看详情
-                                                </a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <img src="/images/book_4.png">
-                                </div>
-                                <div class="content">
-                                    <a class="header">in aliquid et</a>
-                                    <div class="meta">
-                                        <span class="date">Veritatis velit beatae voluptas et voluptatem rerum.</span>
-                                    </div>
-                                </div>
-                                <div class="extra content">
-                                    <a><i class="users icon"></i> 6 篇文摘 </a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                    @endforeach
                 </div>
             </div>
         </div>

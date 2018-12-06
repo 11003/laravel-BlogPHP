@@ -95,6 +95,33 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
+    public function noti()
+    {
+        //获取用户已读和未读消息
+        $notis = Auth::user()->notifications()->paginate(10);
+        return view('user.noti',compact('notis'));
+    }
+    public function readall()
+    {
+        Auth::user()
+            ->unreadNotifications //获取未读消息
+            ->markAsRead(); //改为已读
+        return back()->with('success','已将未读消息标记为已读');
+    }
+    public function notreadall()
+    {
+        Auth::user()
+            ->readNotifications //获取已读消息
+            ->markAsUnread(); //改为未读
+        return back()->with('success','已将已读消息标记为未读');
+    }
+    public function delread()
+    {
+        Auth::user()
+            ->readNotifications //获取已读消息
+            ->delete(); //改为已读
+        return back()->with('success','已将所有已读消息删除');
+    }
     public function destroy($id)
     {
         //

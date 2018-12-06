@@ -6,7 +6,7 @@
                 @include('common.adminmenu')
             </div>
             <div class="twelve wide stretched column">
-                <a class="ui green basic button" href="#">新增图书</a>
+                <a class="ui green basic button" href="{{ url('book/create') }}">新增图书</a>
                 <table class="ui celled table">
                     <thead>
                     <tr>
@@ -38,6 +38,7 @@
                                 <a href="javascript:delModel('{{ url('book/del', $book->id) }}')">删除</a>
                             @endif
                             <a href="{{ url('book/edit', $book->id) }}">修改</a>
+                            <a href="{{ url('article/create', $book->id) }}">添加文摘</a>
                         </td>
                     </tr>
                     @endforeach

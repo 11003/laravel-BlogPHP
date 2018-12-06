@@ -2,8 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Article;
 use Illuminate\Http\Request;
-
+use App\Book;
 class HomeController extends Controller
 {
 
@@ -15,6 +16,8 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('welcome');
+        $hot_books = Book::getHotBooks();
+        $hot_articles = Article::getHotArticle();
+        return view('welcome',compact('hot_books','hot_articles'));
     }
 }
