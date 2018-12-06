@@ -14,6 +14,7 @@
 ### 分页
 1.
 运行**composer**`php artisan vendor:publish`选择`laravel-pagination`
+
 2.
 引入路径
 `{{ $books->links('vendor.pagination.semantic-ui') }}`
